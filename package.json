@@ -1,0 +1,34 @@
+{
+  "name": "build-size-super-plugin",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "build": "rm -rf ./lib && tsc",
+    "format": "prettier --list-different '**/*.{ts,json,md, gql}'",
+    "format:fix": "prettier --write '**/*.{ts,json,md,gql}'",
+    "tslint": "tslint -p ./tsconfig.json -e 'node_modules/**/*' -e '**/node_modules/**/*' '**/*.ts'",
+    "tslint:fix": "tslint --fix --format stylish -p ./tsconfig.json -e 'node_modules/**/*' -e '**/node_modules/**/*' '**/*.ts'",
+    "tsc": "tsc --noEmit",
+    "lint": "yarn format && yarn tslint && yarn tsc",
+    "lint:fix": "yarn format:fix && yarn tslint:fix && yarn tsc",
+    "test:unit": "mocha --reporter spec --require ts-node/register 'src/**/*.spec.ts'",
+    "test": "yarn lint && yarn test:unit",
+    "test:fix": "yarn lint:fix && yarn test:unit"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.15.3",
+    "ts-essentials": "^1.0.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.1",
+    "tslint-language-service": "^0.9.9",
+    "typescript": "^3.2.2",
+    "typestrict": "^1.0.2"
+  }
+}
