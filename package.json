@@ -13,22 +13,34 @@
     "tsc": "tsc --noEmit",
     "lint": "yarn format && yarn tslint && yarn tsc",
     "lint:fix": "yarn format:fix && yarn tslint:fix && yarn tsc",
-    "test:unit": "mocha --reporter spec --require ts-node/register 'src/**/*.spec.ts'",
+    "test:unit": "jest",
+    "test:watch": "jest --watch",
     "test": "yarn lint && yarn test:unit",
     "test:fix": "yarn lint:fix && yarn test:unit"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.5",
+    "@types/bluebird": "^3.5.25",
+    "@types/bytes": "^3.0.0",
+    "@types/jest": "^23.3.12",
     "@types/node": "^10.12.18",
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0",
+    "@types/pretty-bytes": "^5.1.0",
+    "bluebird": "^3.5.3",
+    "jest": "^23.6.0",
     "prettier": "^1.15.3",
+    "super-ci": "^0.0.4",
     "ts-essentials": "^1.0.2",
+    "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.1",
     "tslint-language-service": "^0.9.9",
     "typescript": "^3.2.2",
     "typestrict": "^1.0.2"
+  },
+  "peerDependencies": {
+    "super-ci": "^0.0.3"
+  },
+  "dependencies": {
+    "bytes": "^3.0.0",
+    "get-folder-size": "^2.0.0"
   }
 }
