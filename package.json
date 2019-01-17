@@ -1,7 +1,8 @@
 {
   "name": "build-size-super-plugin",
   "version": "0.0.2",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "start": "ts-node ./src/index.ts",
@@ -16,7 +17,8 @@
     "test:unit": "jest",
     "test:watch": "jest --watch",
     "test": "yarn lint && yarn test:unit",
-    "test:fix": "yarn lint:fix && yarn test:unit"
+    "test:fix": "yarn lint:fix && yarn test:unit",
+    "prepublish": "yarn test && yarn build"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.25",
