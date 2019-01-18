@@ -34,5 +34,5 @@ describe("build-size", () => {
     expect(superCI.report).toBeCalledWith("Build size: ./build — 1KB. Changed by 224B (28.00 %)");
   });
 
-  it.skip("should work not in PR context");
+  it.skip("should work not in PR context", () => {});
 });
