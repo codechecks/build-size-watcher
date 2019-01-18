@@ -6,4 +6,5 @@ export const superCI: Partial<typeof SuperCI.superCI> = {
   saveValue: jest.fn(),
   getCollection: jest.fn(),
   saveCollection: jest.fn(),
+  isPr: jest.fn(),
 };
