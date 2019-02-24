@@ -18,7 +18,10 @@ describe("build-size", () => {
     await buildSize({ path: buildPath });
 
     expect(getSizeMock).toBeCalledWith(buildPath);
-    expect(superCI.report).toBeCalledWith("Build size: ./build — 1KB. Couldn't find previous build size");
+    expect(superCI.report).toBeCalledWith({
+      name: "Build Size",
+      shortDescription: `./build — 1KB (? +-)`,
+    });
   });
 
   it("should work with baseline found", async () => {
@@ -31,7 +34,10 @@ describe("build-size", () => {
 
     expect(getSizeMock).toBeCalledWith(buildPath);
     expect(getSizeMock).toBeCalledTimes(1);
-    expect(superCI.report).toBeCalledWith("Build size: ./build — 1KB. Changed by 224B (28.00 %)");
+    expect(superCI.report).toBeCalledWith({
+      name: "Build Size",
+      shortDescription: `./build — 1KB. Changed by 224B (28.00 %)`,
+    });
   });
 
   it.skip("should work not in PR context", () => {});

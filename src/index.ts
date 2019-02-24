@@ -13,17 +13,21 @@ export async function buildSize(options: BuildSizeOptions): Promise<void> {
     const baseSize = await superCI.getValue<number>("build-size");
 
     if (!baseSize) {
-      superCI.report(`Build size: ${options.path} — ${bytes(currentSize)}. Couldn't find previous build size`);
+      superCI.report({
+        name: "Build Size",
+        shortDescription: `${options.path} — ${bytes(currentSize)} (? +-)`,
+      });
       return;
     }
 
     const changeSize = currentSize - baseSize;
     const changeSizePercentage = (changeSize / baseSize) * 100;
 
-    superCI.report(
-      `Build size: ${options.path} — ${bytes(currentSize)}. Changed by ${bytes(
+    superCI.report({
+      name: "Build Size",
+      shortDescription: `${options.path} — ${bytes(currentSize)}. Changed by ${bytes(
         changeSize,
       )} (${changeSizePercentage.toFixed(2)} %)`,
-    );
+    });
   }
 }
