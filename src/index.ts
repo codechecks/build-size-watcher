@@ -40,31 +40,4 @@ export async function buildSize(options: BuildSizeOptions): Promise<void> {
 
   const report = await getReportFromDiff(diff);
   superCI.report(report);
-
-  // const report: Report =
-  // // superCI.report()
-
-  // const currentSize = await getSize(options.path);
-
-  // if (superCI.isPr()) {
-  //   const baseSize = await superCI.getValue<number>("build-size");
-
-  //   if (!baseSize) {
-  //     superCI.report({
-  //       name: "Build Size",
-  //       shortDescription: `${options.path} — ${bytes(currentSize)} (? +-)`,
-  //     });
-  //     return;
-  //   }
-
-  //   const changeSize = currentSize - baseSize;
-  //   const changeSizePercentage = (changeSize / baseSize) * 100;
-
-  //   superCI.report({
-  //     name: "Build Size",
-  //     shortDescription: `${options.path} — ${bytes(currentSize)}. Changed by ${bytes(
-  //       changeSize,
-  //     )} (${changeSizePercentage.toFixed(2)} %)`,
-  //   });
-  // }
 }

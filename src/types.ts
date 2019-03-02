@@ -2,7 +2,6 @@ import { Dictionary } from "ts-essentials";
 
 interface FileDescription {
   path: string; // supports glob so this could match multiple files really
-  name: string;
   maxSize?: number;
 }
 

@@ -11,7 +11,7 @@ export function getArtifactDiff(A: FullArtifact, B: FullArtifact = {}): FullArti
     .reduce((a, b) => a + b, 0);
 
   const totalSizeChange = totalSizeA - totalSizeB;
-  const totalSizeChangeFraction = (totalSizeA - totalSizeB) / totalSizeB;
+  const totalSizeChangeFraction = totalSizeB ? (totalSizeA - totalSizeB) / totalSizeB : 1;
 
   const files: Dictionary<ArtifactDiff> = {};
 
@@ -31,14 +31,14 @@ export function getArtifactDiff(A: FullArtifact, B: FullArtifact = {}): FullArti
         type: "new",
         overallSize: a.overallSize,
         sizeChange: a.overallSize,
-        sizeChangeFraction: 100,
+        sizeChangeFraction: 1,
       };
     } else {
       files[aKey] = {
         type: "deleted",
         overallSize: 0,
         sizeChange: -1 * b.overallSize,
-        sizeChangeFraction: -100,
+        sizeChangeFraction: -1,
       };
     }
   }
