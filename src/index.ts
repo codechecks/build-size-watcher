@@ -1,33 +1,70 @@
 import { superCI } from "super-ci";
-import * as bytes from "bytes";
+import * as glob from "glob";
 
-import { BuildSizeOptions } from "./types";
+import { BuildSizeOptions, FileArtifact, FullArtifact, FullArtifactDiff } from "./types";
 import { getSize } from "./getSize";
+import { join } from "path";
+import { getArtifactDiff } from "./getArtifactDiff";
+import { getReportFromDiff } from "./getReportFromDiff";
+
+const ARTIFACT_KEY = "build-size";
 
 export async function buildSize(options: BuildSizeOptions): Promise<void> {
-  const currentSize = await getSize(options.path);
+  const fullArtifact: FullArtifact = {};
 
-  await superCI.saveValue("build-size", currentSize);
+  for (const file of options.files) {
+    const matches = glob.sync(file.path, { cwd: __dirname });
 
-  if (superCI.isPr()) {
-    const baseSize = await superCI.getValue<number>("build-size");
+    const sizes = await Promise.all(matches.map(m => getSize(join(__dirname, m))));
+    const overallSize = sizes.reduce((a, b) => a + b, 0);
 
-    if (!baseSize) {
-      superCI.report({
-        name: "Build Size",
-        shortDescription: `${options.path} — ${bytes(currentSize)} (? +-)`,
-      });
-      return;
-    }
+    const artifact: FileArtifact = {
+      path: file.path,
+      name: file.name,
+      files: matches.length,
+      overallSize,
+    };
 
-    const changeSize = currentSize - baseSize;
-    const changeSizePercentage = (changeSize / baseSize) * 100;
-
-    superCI.report({
-      name: "Build Size",
-      shortDescription: `${options.path} — ${bytes(currentSize)}. Changed by ${bytes(
-        changeSize,
-      )} (${changeSizePercentage.toFixed(2)} %)`,
-    });
+    fullArtifact[file.name] = artifact;
   }
+
+  await superCI.saveValue(ARTIFACT_KEY, fullArtifact);
+
+  if (!superCI.isPr()) {
+    return;
+  }
+
+  const baseArtifact = await superCI.getValue<FullArtifact>(ARTIFACT_KEY);
+
+  const diff = getArtifactDiff(fullArtifact, baseArtifact);
+
+  const report = await getReportFromDiff(diff);
+  superCI.report(report);
+
+  // const report: Report =
+  // // superCI.report()
+
+  // const currentSize = await getSize(options.path);
+
+  // if (superCI.isPr()) {
+  //   const baseSize = await superCI.getValue<number>("build-size");
+
+  //   if (!baseSize) {
+  //     superCI.report({
+  //       name: "Build Size",
+  //       shortDescription: `${options.path} — ${bytes(currentSize)} (? +-)`,
+  //     });
+  //     return;
+  //   }
+
+  //   const changeSize = currentSize - baseSize;
+  //   const changeSizePercentage = (changeSize / baseSize) * 100;
+
+  //   superCI.report({
+  //     name: "Build Size",
+  //     shortDescription: `${options.path} — ${bytes(currentSize)}. Changed by ${bytes(
+  //       changeSize,
+  //     )} (${changeSizePercentage.toFixed(2)} %)`,
+  //   });
+  // }
 }
