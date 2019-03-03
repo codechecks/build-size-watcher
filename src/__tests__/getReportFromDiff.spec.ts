@@ -46,6 +46,7 @@ Object {
   ",
   "name": "BuildSize",
   "shortDescription": "Total: 1.02KB Change: -4.9KB (-82.73%)",
+  "status": "success",
 }
 `);
   });
@@ -73,6 +74,7 @@ Object {
   ",
   "name": "BuildSize",
   "shortDescription": "Total: 1.02KB Change: +1.02KB (+100.00%)",
+  "status": "success",
 }
 `);
   });
@@ -100,6 +102,7 @@ Object {
   ",
   "name": "BuildSize",
   "shortDescription": "Total: 1.02KB Change: +1.02KB (+100.00%)",
+  "status": "fail",
 }
 `);
   });

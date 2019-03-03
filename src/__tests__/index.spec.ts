@@ -71,6 +71,7 @@ describe("build-size", () => {
   ",
         "name": "BuildSize",
         "shortDescription": "Total: 6B Change: -4B (-40.00%)",
+        "status": "success",
       },
     ],
   ],
