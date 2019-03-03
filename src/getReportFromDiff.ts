@@ -42,7 +42,7 @@ export function getReportFromDiff(diff: FullArtifactDiff, originalFiles: FileDes
     name: "BuildSize",
     shortDescription,
     longDescription,
-    status: shouldFail ? "fail" : "success",
+    status: shouldFail ? "failure" : "success",
   };
 }
 
