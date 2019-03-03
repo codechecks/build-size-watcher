@@ -11,7 +11,6 @@ export interface BuildSizeOptions {
 
 export interface FileArtifact {
   path: string;
-  name: string;
   files: number;
   overallSize: number;
 }

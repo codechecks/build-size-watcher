@@ -20,12 +20,11 @@ export async function buildSize(options: BuildSizeOptions): Promise<void> {
 
     const artifact: FileArtifact = {
       path: file.path,
-      name: file.name,
       files: matches.length,
       overallSize,
     };
 
-    fullArtifact[file.name] = artifact;
+    fullArtifact[file.path] = artifact;
   }
 
   await superCI.saveValue(ARTIFACT_KEY, fullArtifact);

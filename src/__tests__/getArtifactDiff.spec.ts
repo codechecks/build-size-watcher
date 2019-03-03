@@ -5,13 +5,11 @@ describe("getArtifactDiff", () => {
   it("should work", async () => {
     const A: FullArtifact = {
       app: {
-        name: "app",
         files: 1,
         overallSize: 1024,
         path: "./build/app.*.js",
       },
       css: {
-        name: "css",
         files: 2,
         overallSize: 23,
         path: "./build/*.css",
@@ -20,13 +18,11 @@ describe("getArtifactDiff", () => {
 
     const B: FullArtifact = {
       app: {
-        name: "app",
         files: 1,
         overallSize: 1019,
         path: "./build/app.*.js",
       },
       vendor: {
-        name: "vendor",
         files: 2,
         overallSize: 5043,
         path: "./build/vendor.*.js",
@@ -66,7 +62,6 @@ Object {
   it("should work with new artifacts", () => {
     const A: FullArtifact = {
       app: {
-        name: "app",
         files: 1,
         overallSize: 1024,
         path: "./build/app.*.js",
