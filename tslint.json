@@ -7,6 +7,7 @@
     "mocha-avoid-only": true,
     "interface-name": [true, "never-prefix"],
     "no-commented-code": true,
-    "no-use-before-declare": false
+    "no-use-before-declare": false,
+    "restrict-plus-operands": false
   }
 }

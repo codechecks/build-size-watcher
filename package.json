@@ -18,19 +18,23 @@
     "test:watch": "jest --watch",
     "test": "yarn lint && yarn test:unit",
     "test:fix": "yarn lint:fix && yarn test:unit",
-    "prepublish": "yarn test && yarn build"
+    "prepublishOnly": "yarn test && yarn build"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.25",
     "@types/bytes": "^3.0.0",
+    "@types/glob": "^7.1.1",
     "@types/jest": "^23.3.12",
+    "@types/lodash": "^4.14.121",
+    "@types/mock-fs": "^3.6.30",
     "@types/node": "^10.12.18",
     "@types/pretty-bytes": "^5.1.0",
     "bluebird": "^3.5.3",
     "jest": "^23.6.0",
+    "mock-fs": "^4.8.0",
     "prettier": "^1.15.3",
     "super-ci": "^0.0.27",
-    "ts-essentials": "^1.0.2",
+    "ts-essentials": "^2.0.2",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.1",
@@ -43,6 +47,8 @@
   },
   "dependencies": {
     "bytes": "^3.0.0",
-    "get-folder-size": "^2.0.0"
+    "get-folder-size": "^2.0.0",
+    "glob": "^7.1.3",
+    "lodash": "^4.17.11"
   }
 }
