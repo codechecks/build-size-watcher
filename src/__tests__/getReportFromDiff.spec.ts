@@ -34,15 +34,15 @@ describe("getReportFromDiff", () => {
       totalSizeChange: -5015,
       totalSizeChangeFraction: -0.8272847245133619,
     };
-    expect(getReportFromDiff(diff)).toMatchInlineSnapshot(`
+    expect(getReportFromDiff(diff, [])).toMatchInlineSnapshot(`
 Object {
   "longDescription": "
-  | Status | Files | Now | Diff |
-  | ------ | ----- | --- | ---- |
-  | changed | app | 10 | +1B (+10.00%) |
-| changed | dapp | 1024 | +5B (+0.49%) |
-| new | css | 23 | +23B (+100.00%) |
-| deleted | vendor | 0 | -4.92KB (-100.00%) |
+  | Status | Files | Now | Diff | Max |
+  | ------ | ----- | --- | ---- | --- |
+  | changed | app | 10B | +1B (+10.00%) |  —  |
+| changed | dapp | 1KB | +5B (+0.49%) |  —  |
+| new | css | 23B | +23B (+100.00%) |  —  |
+| deleted | vendor | 0B | -4.92KB (-100.00%) |  —  |
   ",
   "name": "BuildSize",
   "shortDescription": "Total: 1.02KB Change: -4.9KB (-82.73%)",
@@ -64,12 +64,39 @@ Object {
       totalSizeChange: 1047,
       totalSizeChangeFraction: 1,
     };
-    expect(getReportFromDiff(diff)).toMatchInlineSnapshot(`
+    expect(getReportFromDiff(diff, [])).toMatchInlineSnapshot(`
 Object {
   "longDescription": "
-  | Status | Files | Now | Diff |
-  | ------ | ----- | --- | ---- |
-  | new | css | 23 | +23B (+100.00%) |
+  | Status | Files | Now | Diff | Max |
+  | ------ | ----- | --- | ---- | --- |
+  | new | css | 23B | +23B (+100.00%) |  —  |
+  ",
+  "name": "BuildSize",
+  "shortDescription": "Total: 1.02KB Change: +1.02KB (+100.00%)",
+}
+`);
+  });
+
+  it("should work with reached max size", async () => {
+    const diff: FullArtifactDiff = {
+      files: {
+        "*.css": {
+          overallSize: 23,
+          sizeChange: 23,
+          sizeChangeFraction: 1,
+          type: "new",
+        },
+      },
+      totalSize: 1047,
+      totalSizeChange: 1047,
+      totalSizeChangeFraction: 1,
+    };
+    expect(getReportFromDiff(diff, [{ path: "*.css", maxSize: 10 }])).toMatchInlineSnapshot(`
+Object {
+  "longDescription": "
+  | Status | Files | Now | Diff | Max |
+  | ------ | ----- | --- | ---- | --- |
+  | 🛑 Max size reached | *.css | 23B | +23B (+100.00%) | 10B |
   ",
   "name": "BuildSize",
   "shortDescription": "Total: 1.02KB Change: +1.02KB (+100.00%)",

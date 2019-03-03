@@ -1,10 +1,11 @@
 import { Report } from "super-ci/dist/client";
-import { FullArtifactDiff } from "./types";
+import { FullArtifactDiff, FileDescription, ArtifactDiffType } from "./types";
 import bytes = require("bytes");
-import { sortBy } from "lodash";
+import { sortBy, groupBy } from "lodash";
 
-export function getReportFromDiff(diff: FullArtifactDiff): Report {
-  const shortDescription = `Total: ${bytes(diff.totalSize)} Change: ${renderSize(
+export function getReportFromDiff(diff: FullArtifactDiff, originalFiles: FileDescription[]): Report {
+  const originalFilesByPath = groupBy(originalFiles, "path");
+  const shortDescription = `Total: ${bytes(diff.totalSize)} Change: ${size(
     diff.totalSizeChange,
     diff.totalSizeChangeFraction,
   )}`;
@@ -17,12 +18,15 @@ export function getReportFromDiff(diff: FullArtifactDiff): Report {
   });
 
   const longDescription = `
-  | Status | Files | Now | Diff |
-  | ------ | ----- | --- | ---- |
+  | Status | Files | Now | Diff | Max |
+  | ------ | ----- | --- | ---- | --- |
   ${reportKeys
     .map(fk => {
-      const file = diff.files[fk];
-      return `| ${file.type} | ${fk} | ${file.overallSize} | ${renderSize(file.sizeChange, file.sizeChangeFraction)} |`;
+      const f = diff.files[fk];
+      const maxSize = originalFilesByPath[fk] && originalFilesByPath[fk][0].maxSize;
+
+      // prettier-ignore
+      return `| ${status(f.type, maxSize ? f.overallSize > maxSize : false)} | ${fk} | ${bytes(f.overallSize)} | ${size(f.sizeChange, f.sizeChangeFraction)} | ${maxSize ? bytes(maxSize) : " — "} |`;
     })
     .join("\n")}
   `;
@@ -32,6 +36,14 @@ export function getReportFromDiff(diff: FullArtifactDiff): Report {
     shortDescription,
     longDescription,
   };
+}
+
+function status(type: ArtifactDiffType, reachedMaxSize: boolean): string {
+  if (reachedMaxSize) {
+    return "🛑 Max size reached";
+  }
+
+  return type;
 }
 
 function renderSign(value: number): string {
@@ -47,6 +59,6 @@ function renderFraction(value: number): string {
   return (value * 100).toFixed(2) + "%";
 }
 
-function renderSize(size: number, fraction: number): string {
+function size(size: number, fraction: number): string {
   return `${renderSign(size) + bytes(size)} (${renderSign(fraction) + renderFraction(fraction)})`;
 }

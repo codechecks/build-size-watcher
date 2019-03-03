@@ -1,6 +1,6 @@
 import { Dictionary } from "ts-essentials";
 
-interface FileDescription {
+export interface FileDescription {
   path: string; // supports glob so this could match multiple files really
   maxSize?: number;
 }
@@ -17,8 +17,10 @@ export interface FileArtifact {
 
 export type FullArtifact = Dictionary<FileArtifact>;
 
+export type ArtifactDiffType = "changed" | "new" | "deleted";
+
 export type ArtifactDiff = {
-  type: "changed" | "new" | "deleted";
+  type: ArtifactDiffType;
   overallSize: number;
   sizeChange: number;
   sizeChangeFraction: number;
