@@ -84,4 +84,47 @@ describe("build-size", () => {
 }
 `);
   });
+
+  it("should work in PR context without baseline", async () => {
+    superCiMock.isPr.mockReturnValue(true);
+    mockFS({
+      [join(__dirname, "../build")]: {
+        "main.12315123.js": "APP JS",
+      },
+    });
+
+    await buildSize({
+      files: [
+        {
+          path: "build/main.*.js",
+        },
+      ],
+    });
+
+    mockFS.restore();
+    expect(superCI.report).toMatchInlineSnapshot(`
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "longDescription": "
+  | Status | Files | Now | Diff | Max |
+  |:------:|:-----:|:---:|:----:|:---:|
+  | new | build/main.*.js | 6B | +6B (+100.00%) |  —  |
+  ",
+        "name": "BuildSize",
+        "shortDescription": "Total: 6B Change: +6B (+100.00%)",
+        "status": "success",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`);
+  });
 });

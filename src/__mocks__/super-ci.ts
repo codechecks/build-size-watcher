@@ -1,4 +1,5 @@
 import * as SuperCI from "super-ci";
+import { join } from "path";
 
 export const superCI: Partial<typeof SuperCI.superCI> = {
   report: jest.fn(),
@@ -7,4 +8,7 @@ export const superCI: Partial<typeof SuperCI.superCI> = {
   getCollection: jest.fn(),
   saveCollection: jest.fn(),
   isPr: jest.fn(),
+  context: {
+    workspaceRoot: join(__dirname, ".."),
+  } as any,
 };

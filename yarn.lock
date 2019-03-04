@@ -3427,10 +3427,10 @@ strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
-super-ci@^0.0.30:
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/super-ci/-/super-ci-0.0.30.tgz#07590523b6ea39f9a24f6f8ee7fc13ef1ec68ec0"
-  integrity sha512-zsPPyAFlNc5kAUBPfGOmB45eK1el9jfJr03zc3h5/WctVhS5qd29E0av/t8ZDcbWRI68l4VGKb6X/PFSRu7arg==
+super-ci@^0.0.31:
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/super-ci/-/super-ci-0.0.31.tgz#69b65aa04a616cc2a523c7482462da864dcadad9"
+  integrity sha512-05YvbElbJZrZpJLSWjhUZ7gXlWl/22PdJhsc1TQc3+N1YGOr/SRrrXvF4tCsz1RsErJ5vj3ZJ/k+yNlRARVhvQ==
   dependencies:
     commander "^2.19.0"
     glob "^7.1.3"
