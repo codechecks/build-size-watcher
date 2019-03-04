@@ -33,7 +33,7 @@
     "jest": "^23.6.0",
     "mock-fs": "^4.8.0",
     "prettier": "^1.15.3",
-    "super-ci": "^0.0.27",
+    "super-ci": "^0.0.30",
     "ts-essentials": "^2.0.2",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
@@ -43,7 +43,7 @@
     "typestrict": "^1.0.2"
   },
   "peerDependencies": {
-    "super-ci": "^0.0.27"
+    "super-ci": "^0.0.30",
   },
   "dependencies": {
     "bytes": "^3.0.0",
