@@ -19,7 +19,7 @@ export function getReportFromDiff(diff: FullArtifactDiff, originalFiles: FileDes
 
   const longDescription = `
   | Status | Files | Now | Diff | Max |
-  | ------ | ----- | --- | ---- | --- |
+  |:------:|:-----:|:---:|:----:|:---:|
   ${reportKeys
     .map(fk => {
       const f = diff.files[fk];

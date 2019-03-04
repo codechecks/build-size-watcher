@@ -38,7 +38,7 @@ describe("getReportFromDiff", () => {
 Object {
   "longDescription": "
   | Status | Files | Now | Diff | Max |
-  | ------ | ----- | --- | ---- | --- |
+  |:------:|:-----:|:---:|:----:|:---:|
   | changed | app | 10B | +1B (+10.00%) |  —  |
 | changed | dapp | 1KB | +5B (+0.49%) |  —  |
 | new | css | 23B | +23B (+100.00%) |  —  |
@@ -69,7 +69,7 @@ Object {
 Object {
   "longDescription": "
   | Status | Files | Now | Diff | Max |
-  | ------ | ----- | --- | ---- | --- |
+  |:------:|:-----:|:---:|:----:|:---:|
   | new | css | 23B | +23B (+100.00%) |  —  |
   ",
   "name": "BuildSize",
@@ -97,7 +97,7 @@ Object {
 Object {
   "longDescription": "
   | Status | Files | Now | Diff | Max |
-  | ------ | ----- | --- | ---- | --- |
+  |:------:|:-----:|:---:|:----:|:---:|
   | 🛑 Max size reached | *.css | 23B | +23B (+100.00%) | 10B |
   ",
   "name": "BuildSize",

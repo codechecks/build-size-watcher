@@ -66,7 +66,7 @@ describe("build-size", () => {
       Object {
         "longDescription": "
   | Status | Files | Now | Diff | Max |
-  | ------ | ----- | --- | ---- | --- |
+  |:------:|:-----:|:---:|:----:|:---:|
   | changed | build/main.*.js | 6B | -4B (-40.00%) |  —  |
   ",
         "name": "BuildSize",
