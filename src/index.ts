@@ -37,6 +37,6 @@ export async function buildSize(options: BuildSizeOptions): Promise<void> {
 
   const diff = getArtifactDiff(fullArtifact, baseArtifact);
 
-  const report = await getReportFromDiff(diff, options.files);
-  superCI.report(report);
+  const report = getReportFromDiff(diff, options.files);
+  await superCI.report(report);
 }
