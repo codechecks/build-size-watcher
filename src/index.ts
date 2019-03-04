@@ -10,12 +10,14 @@ import { getReportFromDiff } from "./getReportFromDiff";
 const ARTIFACT_KEY = "build-size";
 
 export async function buildSize(options: BuildSizeOptions): Promise<void> {
+  const cwd = superCI.context.workspaceRoot;
+
   const fullArtifact: FullArtifact = {};
 
   for (const file of options.files) {
-    const matches = glob.sync(file.path, { cwd: superCI.context.workspaceRoot });
+    const matches = glob.sync(file.path, { cwd });
 
-    const sizes = await Promise.all(matches.map(m => getSize(join(__dirname, m))));
+    const sizes = await Promise.all(matches.map(match => getSize(join(cwd, match))));
     const overallSize = sizes.reduce((a, b) => a + b, 0);
 
     const artifact: FileArtifact = {
