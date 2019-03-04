@@ -43,7 +43,7 @@
     "typestrict": "^1.0.2"
   },
   "peerDependencies": {
-    "super-ci": "^0.0.30",
+    "super-ci": "^0.0.30"
   },
   "dependencies": {
     "bytes": "^3.0.0",
