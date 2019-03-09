@@ -1,9 +1,9 @@
-import { SuperCiReport } from "super-ci";
+import { CodeChecksReport } from "codechecks";
 import { FullArtifactDiff, FileDescription, ArtifactDiffType } from "./types";
 import bytes = require("bytes");
 import { sortBy, groupBy } from "lodash";
 
-export function getReportFromDiff(diff: FullArtifactDiff, originalFiles: FileDescription[]): SuperCiReport {
+export function getReportFromDiff(diff: FullArtifactDiff, originalFiles: FileDescription[]): CodeChecksReport {
   const originalFilesByPath = groupBy(originalFiles, "path");
   const shortDescription = `Total: ${bytes(diff.totalSize)} Change: ${renderSize(
     diff.totalSizeChange,

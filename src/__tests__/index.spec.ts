@@ -1,17 +1,17 @@
 import { buildSize } from "../index";
 import * as mockFS from "mock-fs";
 import { join } from "path";
-import { superCI } from "super-ci";
+import { codeChecks } from "codechecks";
 import { FullArtifact } from "../types";
 
 type Mocked<T> = { [k in keyof T]: jest.Mock<T[k]> };
 
 describe("build-size", () => {
-  const superCiMock = require("../__mocks__/super-ci").superCI as Mocked<typeof superCI>;
+  const codeChecksMock = require("../__mocks__/codechecks").codeChecks as Mocked<typeof codeChecks>;
   beforeEach(() => jest.resetAllMocks());
 
   it("should work not in PR context", async () => {
-    superCiMock.isPr.mockReturnValue(false);
+    codeChecksMock.isPr.mockReturnValue(false);
     mockFS({
       [join(__dirname, "../build")]: {
         "main.12315123.js": "APP JS",
@@ -29,12 +29,12 @@ describe("build-size", () => {
     });
 
     mockFS.restore();
-    expect(superCI.report).toBeCalledTimes(0);
+    expect(codeChecks.report).toBeCalledTimes(0);
   });
 
   it("should work in PR context", async () => {
-    superCiMock.isPr.mockReturnValue(true);
-    superCiMock.getValue.mockReturnValue({
+    codeChecksMock.isPr.mockReturnValue(true);
+    codeChecksMock.getValue.mockReturnValue({
       "build/main.*.js": {
         name: "app",
         files: 1,
@@ -59,7 +59,7 @@ describe("build-size", () => {
     });
 
     mockFS.restore();
-    expect(superCI.report).toMatchInlineSnapshot(`
+    expect(codeChecks.report).toMatchInlineSnapshot(`
 [MockFunction] {
   "calls": Array [
     Array [
@@ -86,7 +86,7 @@ describe("build-size", () => {
   });
 
   it("should work in PR context without baseline", async () => {
-    superCiMock.isPr.mockReturnValue(true);
+    codeChecksMock.isPr.mockReturnValue(true);
     mockFS({
       [join(__dirname, "../build")]: {
         "main.12315123.js": "APP JS",
@@ -102,7 +102,7 @@ describe("build-size", () => {
     });
 
     mockFS.restore();
-    expect(superCI.report).toMatchInlineSnapshot(`
+    expect(codeChecks.report).toMatchInlineSnapshot(`
 [MockFunction] {
   "calls": Array [
     Array [

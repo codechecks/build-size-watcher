@@ -1,4 +1,4 @@
-import { superCI } from "super-ci";
+import { codeChecks } from "codechecks";
 import * as glob from "glob";
 
 import { BuildSizeOptions, FileArtifact, FullArtifact, FullArtifactDiff } from "./types";
@@ -10,7 +10,7 @@ import { getReportFromDiff } from "./getReportFromDiff";
 const ARTIFACT_KEY = "build-size";
 
 export async function buildSize(options: BuildSizeOptions): Promise<void> {
-  const cwd = superCI.context.workspaceRoot;
+  const cwd = codeChecks.context.workspaceRoot;
 
   const fullArtifact: FullArtifact = {};
 
@@ -29,16 +29,16 @@ export async function buildSize(options: BuildSizeOptions): Promise<void> {
     fullArtifact[file.path] = artifact;
   }
 
-  await superCI.saveValue(ARTIFACT_KEY, fullArtifact);
+  await codeChecks.saveValue(ARTIFACT_KEY, fullArtifact);
 
-  if (!superCI.isPr()) {
+  if (!codeChecks.isPr()) {
     return;
   }
 
-  const baseArtifact = await superCI.getValue<FullArtifact>(ARTIFACT_KEY);
+  const baseArtifact = await codeChecks.getValue<FullArtifact>(ARTIFACT_KEY);
 
   const diff = getArtifactDiff(fullArtifact, baseArtifact);
 
   const report = getReportFromDiff(diff, options.files);
-  await superCI.report(report);
+  await codeChecks.report(report);
 }

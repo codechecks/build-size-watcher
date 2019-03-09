@@ -1,7 +1,7 @@
-import * as SuperCI from "super-ci";
+import * as CodeChecks from "codechecks";
 import { join } from "path";
 
-export const superCI: Partial<typeof SuperCI.superCI> = {
+export const codeChecks: Partial<typeof CodeChecks.codeChecks> = {
   report: jest.fn(),
   getValue: jest.fn(),
   saveValue: jest.fn(),

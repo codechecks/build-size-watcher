@@ -1,1 +1,1 @@
-# build-size-super-plugin
+# CodeCheck Build Size

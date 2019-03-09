@@ -1,5 +1,5 @@
 {
-  "name": "build-size-super-plugin",
+  "name": "codecheck-build-size",
   "version": "0.0.8",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -30,10 +30,10 @@
     "@types/node": "^10.12.18",
     "@types/pretty-bytes": "^5.1.0",
     "bluebird": "^3.5.3",
+    "codechecks": "^0.0.32",
     "jest": "^23.6.0",
     "mock-fs": "^4.8.0",
     "prettier": "^1.15.3",
-    "super-ci": "^0.0.31",
     "ts-essentials": "^2.0.2",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
@@ -43,7 +43,7 @@
     "typestrict": "^1.0.2"
   },
   "peerDependencies": {
-    "super-ci": "^0.0.31"
+    "codechecks": "^0.0.32"
   },
   "dependencies": {
     "bytes": "^3.0.0",
