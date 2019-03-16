@@ -1,12 +1,21 @@
 import { Dictionary } from "ts-essentials";
 
 export interface FileDescription {
-  path: string; // supports glob so this could match multiple files really
-  maxSize?: number;
+  path: string; // supports glob
+  maxSize?: number | string;
 }
 
 export interface BuildSizeOptions {
   files: FileDescription[];
+}
+
+export interface NormalizedFileDescription {
+  path: string; // supports glob
+  maxSize?: number;
+}
+
+export interface NormalizedBuildSizeOptions {
+  files: NormalizedFileDescription[];
 }
 
 export interface FileArtifact {

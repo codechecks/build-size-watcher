@@ -1,15 +1,17 @@
 import { codeChecks } from "codechecks";
 import * as glob from "glob";
 
-import { BuildSizeOptions, FileArtifact, FullArtifact, FullArtifactDiff } from "./types";
+import { BuildSizeOptions, FileArtifact, FullArtifact } from "./types";
 import { getSize } from "./getSize";
 import { join } from "path";
 import { getArtifactDiff } from "./getArtifactDiff";
 import { getReportFromDiff } from "./getReportFromDiff";
+import { normalizeOptions } from "./normalization";
 
 const ARTIFACT_KEY = "build-size";
 
-export async function buildSize(options: BuildSizeOptions): Promise<void> {
+export async function buildSize(_options: BuildSizeOptions): Promise<void> {
+  const options = normalizeOptions(_options);
   const cwd = codeChecks.context.workspaceRoot;
 
   const fullArtifact: FullArtifact = {};
