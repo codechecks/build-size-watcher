@@ -1,6 +1,6 @@
 {
   "name": "codecheck-build-size",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
