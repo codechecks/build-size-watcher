@@ -36,6 +36,7 @@ export async function main() {
 
 ```typescript
 await buildSize({
+  gzip?: boolean, // should we track raw file size or after gzipping? default to true
   files: [
     {
       path: string, // glob supporting path to files

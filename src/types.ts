@@ -6,6 +6,7 @@ export interface FileDescription {
 }
 
 export interface BuildSizeOptions {
+  gzip?: boolean; // defaults to true
   files: FileDescription[];
 }
 
@@ -15,6 +16,7 @@ export interface NormalizedFileDescription {
 }
 
 export interface NormalizedBuildSizeOptions {
+  gzip: boolean;
   files: NormalizedFileDescription[];
 }
 

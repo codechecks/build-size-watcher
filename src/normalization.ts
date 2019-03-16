@@ -4,6 +4,7 @@ import bytes = require("bytes");
 
 export function normalizeOptions(options: BuildSizeOptions): NormalizedBuildSizeOptions {
   return {
+    gzip: options.gzip === undefined ? true : options.gzip,
     files: options.files.map(normalizeFileDescription),
   };
 }

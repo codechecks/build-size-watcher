@@ -19,7 +19,7 @@ export async function buildSize(_options: BuildSizeOptions): Promise<void> {
   for (const file of options.files) {
     const matches = glob.sync(file.path, { cwd });
 
-    const sizes = await Promise.all(matches.map(match => getSize(join(cwd, match))));
+    const sizes = await Promise.all(matches.map(match => getSize(join(cwd, match), options.gzip)));
     const overallSize = sizes.reduce((a, b) => a + b, 0);
 
     const artifact: FileArtifact = {
