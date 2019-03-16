@@ -51,6 +51,7 @@ describe("build-size", () => {
     });
 
     await buildSize({
+      gzip: false,
       files: [
         {
           path: "build/main.*.js",
@@ -69,8 +70,8 @@ describe("build-size", () => {
   |:------:|:-----:|:---:|:----:|:---:|
   | changed | build/main.*.js | 6B | -4B (-40.00%) |  —  |
   ",
-        "name": "BuildSize",
-        "shortDescription": "Total: 6B Change: -4B (-40.00%)",
+        "name": "Build Size",
+        "shortDescription": "Change: -4B (-40.00%) Total: 6B",
         "status": "success",
       },
     ],
@@ -110,10 +111,10 @@ describe("build-size", () => {
         "longDescription": "
   | Status | Files | Now | Diff | Max |
   |:------:|:-----:|:---:|:----:|:---:|
-  | new | build/main.*.js | 6B | +6B (+100.00%) |  —  |
+  | new | build/main.*.js | 26B | +26B (+100.00%) |  —  |
   ",
-        "name": "BuildSize",
-        "shortDescription": "Total: 6B Change: +6B (+100.00%)",
+        "name": "Build Size",
+        "shortDescription": "Change: +26B (+100.00%) Total: 26B",
         "status": "success",
       },
     ],

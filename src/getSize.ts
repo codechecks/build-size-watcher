@@ -1,14 +1,16 @@
 import * as fs from "fs";
-import { promisify } from "bluebird";
-const getFolderSize = require("get-folder-size");
+import gzipSize = require("gzip-size");
 
-export async function getSize(path: string): Promise<number> {
+export async function getSize(path: string, gzip: boolean): Promise<number> {
   const stat = fs.statSync(path);
 
-  if (stat.isFile()) {
-    return stat.size;
+  if (!stat.isFile()) {
+    throw new Error(`${path} is not a file!`);
+  }
+
+  if (gzip) {
+    return gzipSize.file(path);
   } else {
-    const fileSizePromisified = promisify<number, string>(getFolderSize);
-    return await fileSizePromisified(path);
+    return stat.size;
   }
 }

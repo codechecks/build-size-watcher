@@ -1,15 +1,17 @@
 import { codeChecks } from "codechecks";
 import * as glob from "glob";
 
-import { BuildSizeOptions, FileArtifact, FullArtifact, FullArtifactDiff } from "./types";
+import { BuildSizeOptions, FileArtifact, FullArtifact } from "./types";
 import { getSize } from "./getSize";
 import { join } from "path";
 import { getArtifactDiff } from "./getArtifactDiff";
 import { getReportFromDiff } from "./getReportFromDiff";
+import { normalizeOptions } from "./normalization";
 
 const ARTIFACT_KEY = "build-size";
 
-export async function buildSize(options: BuildSizeOptions): Promise<void> {
+export async function buildSize(_options: BuildSizeOptions): Promise<void> {
+  const options = normalizeOptions(_options);
   const cwd = codeChecks.context.workspaceRoot;
 
   const fullArtifact: FullArtifact = {};
@@ -17,7 +19,7 @@ export async function buildSize(options: BuildSizeOptions): Promise<void> {
   for (const file of options.files) {
     const matches = glob.sync(file.path, { cwd });
 
-    const sizes = await Promise.all(matches.map(match => getSize(join(cwd, match))));
+    const sizes = await Promise.all(matches.map(match => getSize(join(cwd, match), options.gzip)));
     const overallSize = sizes.reduce((a, b) => a + b, 0);
 
     const artifact: FileArtifact = {

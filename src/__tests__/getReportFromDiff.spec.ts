@@ -44,8 +44,8 @@ Object {
 | new | css | 23B | +23B (+100.00%) |  —  |
 | deleted | vendor | 0B | -4.92KB (-100.00%) |  —  |
   ",
-  "name": "BuildSize",
-  "shortDescription": "Total: 1.02KB Change: -4.9KB (-82.73%)",
+  "name": "Build Size",
+  "shortDescription": "Change: -4.9KB (-82.73%) Total: 1.02KB",
   "status": "success",
 }
 `);
@@ -72,8 +72,8 @@ Object {
   |:------:|:-----:|:---:|:----:|:---:|
   | new | css | 23B | +23B (+100.00%) |  —  |
   ",
-  "name": "BuildSize",
-  "shortDescription": "Total: 1.02KB Change: +1.02KB (+100.00%)",
+  "name": "Build Size",
+  "shortDescription": "Change: +1.02KB (+100.00%) Total: 1.02KB",
   "status": "success",
 }
 `);
@@ -100,8 +100,8 @@ Object {
   |:------:|:-----:|:---:|:----:|:---:|
   | 🛑 Max size reached | *.css | 23B | +23B (+100.00%) | 10B |
   ",
-  "name": "BuildSize",
-  "shortDescription": "Total: 1.02KB Change: +1.02KB (+100.00%)",
+  "name": "Build Size",
+  "shortDescription": "Change: +1.02KB (+100.00%) Total: 1.02KB",
   "status": "failure",
 }
 `);

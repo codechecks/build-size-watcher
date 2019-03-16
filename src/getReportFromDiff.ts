@@ -1,13 +1,15 @@
 import { CodeChecksReport } from "codechecks";
-import { FullArtifactDiff, FileDescription, ArtifactDiffType } from "./types";
+import { FullArtifactDiff, ArtifactDiffType, NormalizedFileDescription } from "./types";
 import bytes = require("bytes");
 import { sortBy, groupBy } from "lodash";
 
-export function getReportFromDiff(diff: FullArtifactDiff, originalFiles: FileDescription[]): CodeChecksReport {
+export function getReportFromDiff(
+  diff: FullArtifactDiff,
+  originalFiles: NormalizedFileDescription[],
+): CodeChecksReport {
   const originalFilesByPath = groupBy(originalFiles, "path");
-  const shortDescription = `Total: ${bytes(diff.totalSize)} Change: ${renderSize(
-    diff.totalSizeChange,
-    diff.totalSizeChangeFraction,
+  const shortDescription = `Change: ${renderSize(diff.totalSizeChange, diff.totalSizeChangeFraction)} Total: ${bytes(
+    diff.totalSize,
   )}`;
 
   const reportKeys = sortBy(Object.keys(diff.files), k => {
@@ -39,7 +41,7 @@ export function getReportFromDiff(diff: FullArtifactDiff, originalFiles: FileDes
     );
 
   return {
-    name: "BuildSize",
+    name: "Build Size",
     shortDescription,
     longDescription,
     status: shouldFail ? "failure" : "success",

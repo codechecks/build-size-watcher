@@ -42,6 +42,13 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/gzip-size@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@types/gzip-size/-/gzip-size-4.1.0.tgz#97982bd76d4cde8ba89114770b174091c5a4507c"
+  integrity sha512-xypfA0lWlmEinBjLMEm9E5aX1EoHDOiAW7VXbZqV9Kc4TjaRrSTv/9DT7jSwkjLi2y2nV3f73GfFFlS+6tIMIg==
+  dependencies:
+    "@types/node" "*"
+
 "@types/jest@^23.3.12":
   version "23.3.12"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.12.tgz#7e0ced251fa94c3bc2d1023d4b84b2992fa06376"
@@ -658,10 +665,10 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codechecks@^0.0.32:
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/codechecks/-/codechecks-0.0.32.tgz#aa0875ed3c2484b27028f1420bfbfddab2cd1be4"
-  integrity sha512-CNBP5yRZ5uNL2JM6CUigWpf8uOcmvDD5KVc2eFlej3WxWn1Gun7RdrirNoAOc5ehxfwEcnO/y4wKDsgE9vrCnw==
+codechecks@^0.0.36:
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/codechecks/-/codechecks-0.0.36.tgz#76c8b9ffb2552f8b944d0352ed0ac8a9acef63c8"
+  integrity sha512-epBVJ9wjtGG2Wu67QYeiqgTuCKvgOi4eFVn/g7VP7V9asiRP/XwIMpUWZ7OqrfbTISSLf3S5OdM9MkZJjHfiSw==
   dependencies:
     commander "^2.19.0"
     glob "^7.1.3"
@@ -892,6 +899,11 @@ domexception@^1.0.1:
   integrity sha512-raigMkn7CJNNo6Ihro1fzG7wr3fHuYVytzquZKX5n0yizGsTcYgzdIUwj1X9pK0VvjeihV+XiclP+DjwbsSKug==
   dependencies:
     webidl-conversions "^4.0.2"
+
+duplexer@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
+  integrity sha1-rOb/gIwc5mtX0ev5eXessCM0z8E=
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -1300,6 +1312,14 @@ growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
   integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
+
+gzip-size@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/gzip-size/-/gzip-size-5.0.0.tgz#a55ecd99222f4c48fd8c01c625ce3b349d0a0e80"
+  integrity sha512-5iI7omclyqrnWw4XbXAmGhPsABkSIDQonv2K0h61lybgofWa6iZyvrI3r2zsJH4P8Nb64fFVzlvfhs0g7BBxAA==
+  dependencies:
+    duplexer "^0.1.1"
+    pify "^3.0.0"
 
 handlebars@^4.0.3:
   version "4.0.12"
@@ -2818,6 +2838,11 @@ pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   integrity sha1-7RQaasBDqEnqWISY59yosVMw6Qw=
+
+pify@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
+  integrity sha1-5aSs0sEB/fPZpNB/DbxNtJ3SgXY=
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
