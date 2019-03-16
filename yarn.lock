@@ -665,10 +665,10 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codechecks@^0.0.32:
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/codechecks/-/codechecks-0.0.32.tgz#aa0875ed3c2484b27028f1420bfbfddab2cd1be4"
-  integrity sha512-CNBP5yRZ5uNL2JM6CUigWpf8uOcmvDD5KVc2eFlej3WxWn1Gun7RdrirNoAOc5ehxfwEcnO/y4wKDsgE9vrCnw==
+codechecks@^0.0.36:
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/codechecks/-/codechecks-0.0.36.tgz#76c8b9ffb2552f8b944d0352ed0ac8a9acef63c8"
+  integrity sha512-epBVJ9wjtGG2Wu67QYeiqgTuCKvgOi4eFVn/g7VP7V9asiRP/XwIMpUWZ7OqrfbTISSLf3S5OdM9MkZJjHfiSw==
   dependencies:
     commander "^2.19.0"
     glob "^7.1.3"

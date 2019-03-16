@@ -31,7 +31,7 @@
     "@types/node": "^10.12.18",
     "@types/pretty-bytes": "^5.1.0",
     "bluebird": "^3.5.3",
-    "codechecks": "^0.0.32",
+    "codechecks": "^0.0.36",
     "jest": "^23.6.0",
     "mock-fs": "^4.8.0",
     "prettier": "^1.15.3",
@@ -44,7 +44,7 @@
     "typestrict": "^1.0.2"
   },
   "peerDependencies": {
-    "codechecks": "^0.0.32"
+    "codechecks": "^0.0.36"
   },
   "dependencies": {
     "bytes": "^3.0.0",
