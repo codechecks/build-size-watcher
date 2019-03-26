@@ -1,4 +1,4 @@
-import { buildSize } from "../index";
+import { buildSizeWatcher } from "../index";
 import * as mockFS from "mock-fs";
 import { join } from "path";
 import { codeChecks } from "codechecks";
@@ -20,7 +20,7 @@ describe("build-size", () => {
       },
     });
 
-    await buildSize({
+    await buildSizeWatcher({
       files: [
         {
           path: "build/main.*.js",
@@ -50,7 +50,7 @@ describe("build-size", () => {
       },
     });
 
-    await buildSize({
+    await buildSizeWatcher({
       gzip: false,
       files: [
         {
@@ -94,7 +94,7 @@ describe("build-size", () => {
       },
     });
 
-    await buildSize({
+    await buildSizeWatcher({
       files: [
         {
           path: "build/main.*.js",

@@ -5,7 +5,7 @@ export interface FileDescription {
   maxSize?: number | string;
 }
 
-export interface BuildSizeOptions {
+export interface BuildSizeWatcherOptions {
   gzip?: boolean; // defaults to true
   files: FileDescription[];
 }

@@ -8,9 +8,10 @@ export function getReportFromDiff(
   originalFiles: NormalizedFileDescription[],
 ): CodeChecksReport {
   const originalFilesByPath = groupBy(originalFiles, "path");
-  const shortDescription = `Change: ${renderSize(diff.totalSizeChange, diff.totalSizeChangeFraction)} Total: ${bytes(
-    diff.totalSize,
-  )}`;
+  const shortDescription = `Change: ${renderSize(
+    diff.totalSizeChange,
+    diff.totalSizeChangeFraction,
+  )} Total: ${bytes(diff.totalSize)}`;
 
   const reportKeys = sortBy(Object.keys(diff.files), k => {
     const value = diff.files[k];
@@ -36,7 +37,8 @@ export function getReportFromDiff(
   const shouldFail = originalFiles
     .filter(file => file.maxSize)
     .reduce(
-      (result, file) => (result || diff.files[file.path] ? diff.files[file.path].overallSize > file.maxSize! : false),
+      (result, file) =>
+        result || diff.files[file.path] ? diff.files[file.path].overallSize > file.maxSize! : false,
       false,
     );
 

@@ -1,7 +1,7 @@
 import { codeChecks } from "codechecks";
 import * as glob from "glob";
 
-import { BuildSizeOptions, FileArtifact, FullArtifact } from "./types";
+import { BuildSizeWatcherOptions, FileArtifact, FullArtifact } from "./types";
 import { getSize } from "./getSize";
 import { join } from "path";
 import { getArtifactDiff } from "./getArtifactDiff";
@@ -10,7 +10,7 @@ import { normalizeOptions } from "./normalization";
 
 const ARTIFACT_KEY = "build-size";
 
-export async function buildSize(_options: BuildSizeOptions): Promise<void> {
+export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promise<void> {
   const options = normalizeOptions(_options);
   const cwd = codeChecks.context.workspaceRoot;
 
