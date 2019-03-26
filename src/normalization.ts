@@ -1,8 +1,13 @@
-import { BuildSizeOptions, NormalizedBuildSizeOptions, FileDescription, NormalizedFileDescription } from "./types";
+import {
+  BuildSizeWatcherOptions,
+  NormalizedBuildSizeOptions,
+  FileDescription,
+  NormalizedFileDescription,
+} from "./types";
 
 import bytes = require("bytes");
 
-export function normalizeOptions(options: BuildSizeOptions): NormalizedBuildSizeOptions {
+export function normalizeOptions(options: BuildSizeWatcherOptions): NormalizedBuildSizeOptions {
   return {
     gzip: options.gzip === undefined ? true : options.gzip,
     files: options.files.map(normalizeFileDescription),
