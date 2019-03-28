@@ -1,10 +1,21 @@
 {
   "name": "@codechecks/build-size-watcher",
   "description": "Keep your build size in check and detect when it gets too big",
-  "keywords": ["build-size", "build", "size", "watcher", "webpack", "frontend", "gzip", "code", "check", "codechecks"],
+  "keywords": [
+    "build-size",
+    "build",
+    "size",
+    "watcher",
+    "webpack",
+    "frontend",
+    "gzip",
+    "code",
+    "check",
+    "codechecks"
+  ],
   "repository": "codechecks/build-size-watcher",
   "author": "Chris Kaczor <chris@kaczor.io>",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
@@ -64,6 +75,6 @@
     "access": "public"
   },
   "engines": {
-		"node": ">=6"
-	}
+    "node": ">=6"
+  }
 }
