@@ -39,6 +39,7 @@
     "lib/**/*"
   ],
   "devDependencies": {
+    "@codechecks/client": "^0.0.48",
     "@types/bluebird": "^3.5.25",
     "@types/bytes": "^3.0.0",
     "@types/glob": "^7.1.1",
@@ -49,7 +50,6 @@
     "@types/node": "^10.12.18",
     "@types/pretty-bytes": "^5.1.0",
     "bluebird": "^3.5.3",
-    "codechecks": "^0.0.36",
     "jest": "^23.6.0",
     "mock-fs": "^4.8.0",
     "prettier": "^1.15.3",
@@ -62,7 +62,7 @@
     "typestrict": "^1.0.2"
   },
   "peerDependencies": {
-    "codechecks": "^0.0.36"
+    "@codechecks/client": "^0.0.48"
   },
   "dependencies": {
     "bytes": "^3.0.0",

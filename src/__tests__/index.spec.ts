@@ -1,13 +1,15 @@
 import { buildSizeWatcher } from "../index";
 import * as mockFS from "mock-fs";
 import { join } from "path";
-import { codeChecks } from "codechecks";
+import { codeChecks } from "@codechecks/client";
 import { FullArtifact } from "../types";
 
 type Mocked<T> = { [k in keyof T]: jest.Mock<T[k]> };
 
 describe("build-size", () => {
-  const codeChecksMock = require("../__mocks__/codechecks").codeChecks as Mocked<typeof codeChecks>;
+  const codeChecksMock = require("../__mocks__/@codechecks/client").codeChecks as Mocked<
+    typeof codeChecks
+  >;
   beforeEach(() => jest.resetAllMocks());
 
   it("should work not in PR context", async () => {

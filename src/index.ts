@@ -1,4 +1,4 @@
-import { codeChecks } from "codechecks";
+import { codeChecks } from "@codechecks/client";
 import * as glob from "glob";
 
 import { BuildSizeWatcherOptions, FileArtifact, FullArtifact } from "./types";

@@ -1,4 +1,4 @@
-import { CodeChecksReport } from "codechecks";
+import { CodeChecksReport } from "@codechecks/client";
 import { FullArtifactDiff, ArtifactDiffType, NormalizedFileDescription } from "./types";
 import bytes = require("bytes");
 import { sortBy, groupBy } from "lodash";
