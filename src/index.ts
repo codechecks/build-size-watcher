@@ -44,3 +44,5 @@ export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promi
   const report = getReportFromDiff(diff, options.files);
   await codeChecks.report(report);
 }
+
+export default buildSizeWatcher;
