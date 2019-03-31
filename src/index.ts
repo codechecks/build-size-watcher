@@ -1,4 +1,4 @@
-import { codeChecks } from "@codechecks/client";
+import { codechecks } from "@codechecks/client";
 import * as glob from "glob";
 
 import { BuildSizeWatcherOptions, FileArtifact, FullArtifact } from "./types";
@@ -12,7 +12,7 @@ const ARTIFACT_KEY = "build-size";
 
 export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promise<void> {
   const options = normalizeOptions(_options);
-  const cwd = codeChecks.context.workspaceRoot;
+  const cwd = codechecks.context.workspaceRoot;
 
   const fullArtifact: FullArtifact = {};
 
@@ -31,18 +31,18 @@ export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promi
     fullArtifact[file.path] = artifact;
   }
 
-  await codeChecks.saveValue(ARTIFACT_KEY, fullArtifact);
+  await codechecks.saveValue(ARTIFACT_KEY, fullArtifact);
 
-  if (!codeChecks.isPr()) {
+  if (!codechecks.isPr()) {
     return;
   }
 
-  const baseArtifact = await codeChecks.getValue<FullArtifact>(ARTIFACT_KEY);
+  const baseArtifact = await codechecks.getValue<FullArtifact>(ARTIFACT_KEY);
 
   const diff = getArtifactDiff(fullArtifact, baseArtifact);
 
   const report = getReportFromDiff(diff, options.files);
-  await codeChecks.report(report);
+  await codechecks.report(report);
 }
 
 export default buildSizeWatcher;
