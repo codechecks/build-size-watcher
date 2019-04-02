@@ -1,7 +1,7 @@
 <p align="center">
   <img src="./meta/check.png" width="700" alt="codechecks.io">
   <h3 align="center">Build Size Watcher</h3>
-  <p align="center">Keep your build size in check and detect when it gets too big.</p>
+  <p align="center">Keep your build size in check and detect when it gets too big</p>
 
   <p align="center">
     <a href="https://circleci.com/gh/codechecks/build-size-watcher"><img alt="Build Status" src="https://circleci.com/gh/codechecks/build-size-watcher/tree/master.svg?style=svg"></a>
@@ -23,21 +23,25 @@ yarn add --dev @codechecks/build-size-watcher
 
 ## Usage
 
-Add to your `codechecks.js` file:
+Add to your `codechecks.json` file:
 
-```typescript
-import { buildSizeWatcher } from "@codechecks/build-size-watcher";
+<!-- prettier-ignore -->
+```json5
+{
+  "checks": [
+    {
+      "name": "build-size-watcher",
+      "options": {
+        "files": [
+          { "path": "./build/static/js/*.js", "maxSize": "1MB" },
+          { "path": "./build/static/css/*.css" },
+          { "path": "./build/static/images/*.jpg" },
+        ],
+      }
+    }
 
-export async function main() {
-  await buildSizeWatcher({
-    files: [
-      { path: "./build/static/js/*.js", maxSize: "1MB" },
-      { path: "./build/static/css/*.css" },
-      { path: "./build/static/images/*.jpg" },
-    ],
-  });
-
-  // ...
+    // ...
+  ]
 }
 ```
 
