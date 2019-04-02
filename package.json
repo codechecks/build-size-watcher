@@ -15,7 +15,7 @@
   ],
   "repository": "codechecks/build-size-watcher",
   "author": "Chris Kaczor <chris@kaczor.io>",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
