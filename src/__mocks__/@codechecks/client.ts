@@ -5,8 +5,8 @@ export const codechecks: Partial<typeof CC.codechecks> = {
   report: jest.fn(),
   getValue: jest.fn(),
   saveValue: jest.fn(),
-  getCollection: jest.fn(),
-  saveCollection: jest.fn(),
+  getDirectory: jest.fn(),
+  saveDirectory: jest.fn(),
   isPr: jest.fn(),
   context: {
     workspaceRoot: join(__dirname, "..", ".."),

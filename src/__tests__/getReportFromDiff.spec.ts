@@ -1,5 +1,11 @@
 import { getReportFromDiff } from "../getReportFromDiff";
 import { FullArtifactDiff } from "../types";
+import { normalizeOptions } from "../normalization";
+
+const dummyOptions = normalizeOptions({
+  files: [],
+  name: "Frontend build size",
+});
 
 describe("getReportFromDiff", () => {
   it("should work with changed/new/deleted artifact", async () => {
@@ -34,7 +40,7 @@ describe("getReportFromDiff", () => {
       totalSizeChange: -5015,
       totalSizeChangeFraction: -0.8272847245133619,
     };
-    expect(getReportFromDiff(diff, [])).toMatchInlineSnapshot(`
+    expect(getReportFromDiff(diff, [], dummyOptions)).toMatchInlineSnapshot(`
 Object {
   "longDescription": "
   | Status | Files | Now | Diff | Max |
@@ -44,7 +50,7 @@ Object {
 | new | css | 23B | +23B (+100.00%) |  —  |
 | deleted | vendor | 0B | -4.92KB (-100.00%) |  —  |
   ",
-  "name": "Build Size",
+  "name": "Frontend build size",
   "shortDescription": "Change: -4.9KB (-82.73%) Total: 1.02KB",
   "status": "success",
 }
@@ -65,14 +71,14 @@ Object {
       totalSizeChange: 1047,
       totalSizeChangeFraction: 1,
     };
-    expect(getReportFromDiff(diff, [])).toMatchInlineSnapshot(`
+    expect(getReportFromDiff(diff, [], dummyOptions)).toMatchInlineSnapshot(`
 Object {
   "longDescription": "
   | Status | Files | Now | Diff | Max |
   |:------:|:-----:|:---:|:----:|:---:|
   | new | css | 23B | +23B (+100.00%) |  —  |
   ",
-  "name": "Build Size",
+  "name": "Frontend build size",
   "shortDescription": "Change: +1.02KB (+100.00%) Total: 1.02KB",
   "status": "success",
 }
@@ -93,14 +99,15 @@ Object {
       totalSizeChange: 1047,
       totalSizeChangeFraction: 1,
     };
-    expect(getReportFromDiff(diff, [{ path: "*.css", maxSize: 10 }])).toMatchInlineSnapshot(`
+    expect(getReportFromDiff(diff, [{ path: "*.css", maxSize: 10 }], dummyOptions))
+      .toMatchInlineSnapshot(`
 Object {
   "longDescription": "
   | Status | Files | Now | Diff | Max |
   |:------:|:-----:|:---:|:----:|:---:|
   | 🛑 Max size reached | *.css | 23B | +23B (+100.00%) | 10B |
   ",
-  "name": "Build Size",
+  "name": "Frontend build size",
   "shortDescription": "Change: +1.02KB (+100.00%) Total: 1.02KB",
   "status": "failure",
 }

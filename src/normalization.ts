@@ -8,9 +8,12 @@ import {
 import bytes = require("bytes");
 
 export function normalizeOptions(options: BuildSizeWatcherOptions): NormalizedBuildSizeOptions {
+  const name = options.name || "Build Size";
   return {
     gzip: options.gzip === undefined ? true : options.gzip,
     files: options.files.map(normalizeFileDescription),
+    name,
+    artifactName: `build-size:${name}`,
   };
 }
 

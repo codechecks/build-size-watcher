@@ -39,7 +39,7 @@
     "lib/**/*"
   ],
   "devDependencies": {
-    "@codechecks/client": "^0.0.52",
+    "@codechecks/client": "^0.1.0",
     "@types/bluebird": "^3.5.25",
     "@types/bytes": "^3.0.0",
     "@types/glob": "^7.1.1",
@@ -62,7 +62,7 @@
     "typestrict": "^1.0.2"
   },
   "peerDependencies": {
-    "@codechecks/client": "^0.0.48"
+    "@codechecks/client": "^0.1.0"
   },
   "dependencies": {
     "bytes": "^3.0.0",
