@@ -23,26 +23,18 @@ yarn add --dev @codechecks/build-size-watcher
 
 ## Usage
 
-Add to your `codechecks.json` file:
+Add to your `codechecks.yml` file:
 
-<!-- prettier-ignore -->
-```json5
-{
-  "checks": [
-    {
-      "name": "build-size-watcher",
-      "options": {
-        "files": [
-          { "path": "./build/static/js/*.js", "maxSize": "1MB" },
-          { "path": "./build/static/css/*.css" },
-          { "path": "./build/static/images/*.jpg" },
-        ],
-      }
-    }
-
-    // ...
-  ]
-}
+```yml
+checks:
+  - name: build-size-watcher
+    options:
+      files:
+        - path: "./build/static/js/*.js"
+          maxSize: 1MB
+        - path: "./build/static/css/*.css"
+        - path: "./build/static/images/*.jpg"
+  # ...
 ```
 
 With each pull request you will get a summary like `Change +3 KB(+1%) Total 300KB` and detailed size
@@ -61,6 +53,7 @@ interface BuildSizeWatcherOptions {
     path: string; // supports globs
     maxSize?: number | string;
   }[];
+  name?: string; // defaults to "Build Size"
 }
 ```
 
@@ -92,6 +85,12 @@ have to deal with checksums in file names: ex. `"./build/static/js/*.js"`
 optional `number|string`<br>\
 Provide the maximum size of all files matched by `files.path`. It can be a number in bytes or a string
 like "1KB" or "1MB". When max size is reached the whole check will report failure.
+
+##### name
+
+optional `string`<br>\
+Defaults: `Build Size`<br>\
+Specify the name for check. Might be useful when you track multi
 
 ## Contributing
 

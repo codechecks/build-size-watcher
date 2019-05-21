@@ -8,8 +8,6 @@ import { getArtifactDiff } from "./getArtifactDiff";
 import { getReportFromDiff } from "./getReportFromDiff";
 import { normalizeOptions } from "./normalization";
 
-const ARTIFACT_KEY = "build-size";
-
 export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promise<void> {
   const options = normalizeOptions(_options);
   const cwd = codechecks.context.workspaceRoot;
@@ -31,17 +29,17 @@ export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promi
     fullArtifact[file.path] = artifact;
   }
 
-  await codechecks.saveValue(ARTIFACT_KEY, fullArtifact);
+  await codechecks.saveValue(options.artifactName, fullArtifact);
 
   if (!codechecks.isPr()) {
     return;
   }
 
-  const baseArtifact = await codechecks.getValue<FullArtifact>(ARTIFACT_KEY);
+  const baseArtifact = await codechecks.getValue<FullArtifact>(options.artifactName);
 
   const diff = getArtifactDiff(fullArtifact, baseArtifact);
 
-  const report = getReportFromDiff(diff, options.files);
+  const report = getReportFromDiff(diff, options.files, options);
   await codechecks.report(report);
 }
 

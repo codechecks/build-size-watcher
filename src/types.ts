@@ -8,6 +8,7 @@ export interface FileDescription {
 export interface BuildSizeWatcherOptions {
   gzip?: boolean; // defaults to true
   files: FileDescription[];
+  name?: string; // defaults to "Build Size"
 }
 
 export interface NormalizedFileDescription {
@@ -18,6 +19,8 @@ export interface NormalizedFileDescription {
 export interface NormalizedBuildSizeOptions {
   gzip: boolean;
   files: NormalizedFileDescription[];
+  name: string;
+  artifactName: string;
 }
 
 export interface FileArtifact {
