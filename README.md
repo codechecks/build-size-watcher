@@ -60,7 +60,7 @@ interface BuildSizeWatcherOptions {
 ##### gzip
 
 optional `boolean`<br>\
-Defaults: `true`<br>\
+Default: `true`<br>\
 Specify if files should be gzipped before size calculation
 
 ##### files
@@ -89,8 +89,8 @@ like "1KB" or "1MB". When max size is reached the whole check will report failur
 ##### name
 
 optional `string`<br>\
-Defaults: `Build Size`<br>\
-Specify the name for check. Might be useful when you track multi
+Default: `Build Size`<br>\
+Specify the name for check. Might be useful when you track multiple builds for example in monorepo.
 
 ## Contributing
 
