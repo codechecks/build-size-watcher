@@ -23,3 +23,7 @@ jobs:
       - run:
           name: Run tests
           command: yarn test
+
+      - run:
+          name: Run codechecks
+          command: yarn codechecks

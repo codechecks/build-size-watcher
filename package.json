@@ -39,7 +39,8 @@
     "lib/**/*"
   ],
   "devDependencies": {
-    "@codechecks/client": "^0.1.0",
+    "@codechecks/ban-deps-codecheck": "^0.1.1",
+    "@codechecks/client": "^0.1.5",
     "@types/bluebird": "^3.5.25",
     "@types/bytes": "^3.0.0",
     "@types/glob": "^7.1.1",

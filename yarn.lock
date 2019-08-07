@@ -18,12 +18,20 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@codechecks/client@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@codechecks/client/-/client-0.1.0.tgz#148909a05832ebc4000b0c2eab48d266f486ce79"
-  integrity sha512-zzYroWMmJKAEPldCQRLJnK7BXT6D8KM94+NyTy4piCwHXySSBZbn0f4OrXWi3wMBTk9mzJeOw4voMbMxTYb8Ug==
+"@codechecks/ban-deps-codecheck@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@codechecks/ban-deps-codecheck/-/ban-deps-codecheck-0.1.1.tgz#978e3adcc169912c35246367de26e64baf29c404"
+  integrity sha512-A1pyynckpS8BfmORO2p+bmpWLx9913uWo2ri2kAkGq/pVC7wWeuInLu2hKd2MFcOfIr9X2PhbrO06g8LNAdjig==
+  dependencies:
+    execa "1"
+
+"@codechecks/client@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@codechecks/client/-/client-0.1.5.tgz#635d905ea2db6e2502a7510dabdba24ddef44d56"
+  integrity sha512-/IcKf0j8dDXjlC3D1RgRNGGk0oo1733v+QH9rnp9urZe/+9fAi0M0aTqYl060ZTnyJgwh9Fek+/5zkOswVFJQA==
   dependencies:
     bluebird "^3.5.3"
+    chalk "^2.4.2"
     commander "^2.19.0"
     debug "^4.1.1"
     execa "^1.0.0"
@@ -31,6 +39,7 @@
     graceful-fs "^4.1.15"
     js-yaml "^3.13.1"
     json5 "^2.1.0"
+    lodash "^4.17.11"
     marked "^0.6.2"
     marked-terminal "^3.2.0"
     mkdirp "^0.5.1"
@@ -659,7 +668,7 @@ chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chalk@^2.0.0, chalk@^2.0.1, chalk@^2.3.0, chalk@^2.4.1:
+chalk@^2.0.0, chalk@^2.0.1, chalk@^2.3.0, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
   integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
@@ -1049,6 +1058,19 @@ exec-sh@^0.2.0:
   dependencies:
     merge "^1.2.0"
 
+execa@1, execa@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-1.0.0.tgz#c6236a5bb4df6d6f15e88e7f017798216749ddd8"
+  integrity sha512-adbxcyWV46qiHyvSp50TKt05tB4tK3HcmF7/nxfAdhnox83seTDbwnaqKO4sXRy7roHAIFqJP/Rw/AuEbX61LA==
+  dependencies:
+    cross-spawn "^6.0.0"
+    get-stream "^4.0.0"
+    is-stream "^1.1.0"
+    npm-run-path "^2.0.0"
+    p-finally "^1.0.0"
+    signal-exit "^3.0.0"
+    strip-eof "^1.0.0"
+
 execa@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.7.0.tgz#944becd34cc41ee32a63a9faf27ad5a65fc59777"
@@ -1056,19 +1078,6 @@ execa@^0.7.0:
   dependencies:
     cross-spawn "^5.0.1"
     get-stream "^3.0.0"
-    is-stream "^1.1.0"
-    npm-run-path "^2.0.0"
-    p-finally "^1.0.0"
-    signal-exit "^3.0.0"
-    strip-eof "^1.0.0"
-
-execa@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-1.0.0.tgz#c6236a5bb4df6d6f15e88e7f017798216749ddd8"
-  integrity sha512-adbxcyWV46qiHyvSp50TKt05tB4tK3HcmF7/nxfAdhnox83seTDbwnaqKO4sXRy7roHAIFqJP/Rw/AuEbX61LA==
-  dependencies:
-    cross-spawn "^6.0.0"
-    get-stream "^4.0.0"
     is-stream "^1.1.0"
     npm-run-path "^2.0.0"
     p-finally "^1.0.0"
