@@ -41,6 +41,7 @@
   "devDependencies": {
     "@codechecks/ban-deps-codecheck": "^0.1.1",
     "@codechecks/client": "^0.1.5",
+    "@codechecks/type-coverage-watcher": "^0.1.3",
     "@types/bluebird": "^3.5.25",
     "@types/bytes": "^3.0.0",
     "@types/glob": "^7.1.1",

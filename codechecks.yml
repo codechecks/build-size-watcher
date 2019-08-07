@@ -1,4 +1,6 @@
 checks:
+  - name: type-coverage-watcher
+
   - name: ban-deps-codecheck
     options:
       - name: node-gyp
