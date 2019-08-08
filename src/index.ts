@@ -24,7 +24,7 @@ export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promi
 
     await codechecks.saveValue(
       options.historyArtifactName,
-      [{ hash: codechecks.context.currentSha, artifact: fullArtifact }, ...historyArtifact],
+      currentHistoryArtifact(historyArtifact, fullArtifact),
       codechecks.context.currentBranchName,
     );
     //we could report here current size as well
@@ -34,16 +34,26 @@ export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promi
   const baseArtifact = await codechecks.getValue<FullArtifact>(options.artifactName);
   const baseHistoryArtifact =
     (await codechecks.getValue<HistoryArtifact>(
-      options.artifactName,
+      options.historyArtifactName,
       codechecks.context.pr!.base.sha,
     )) || [];
 
   const diff = getArtifactDiff(fullArtifact, baseArtifact);
 
-  await generateChart("./charts/chart1.png", getChartData(baseHistoryArtifact));
+  await generateChart(
+    "./charts/chart1.png",
+    getChartData(currentHistoryArtifact(baseHistoryArtifact, fullArtifact)),
+  );
 
   const report = getReportFromDiff(diff, options.files, options);
   await codechecks.report(report);
 }
 
 export default buildSizeWatcher;
+
+export function currentHistoryArtifact(
+  historyArtifact: HistoryArtifact,
+  artifact: FullArtifact,
+): HistoryArtifact {
+  return [{ hash: codechecks.context.currentSha, artifact }, ...historyArtifact];
+}

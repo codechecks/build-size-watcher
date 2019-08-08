@@ -3,7 +3,7 @@ import * as mockFS from "mock-fs";
 import { join } from "path";
 import { codechecks } from "@codechecks/client";
 import { generateChart } from "../charts/generateChart";
-import { FullArtifact } from "../types";
+import { FullArtifact, HistoryArtifact } from "../types";
 
 type Mocked<T> = { [k in keyof T]: jest.Mock<T[k]> };
 
@@ -82,14 +82,21 @@ describe("build-size", () => {
 
   it("should work in PR context", async () => {
     codeChecksMock.isPr.mockReturnValue(true);
-    codeChecksMock.getValue.mockReturnValue({
+    const responseArtifact: FullArtifact = {
       "build/main.*.js": {
-        name: "app",
         files: 1,
         overallSize: 10,
         path: "build/main.*.js",
       },
-    } as FullArtifact);
+    };
+    const responseHistoryArtifact: HistoryArtifact = [
+      {
+        hash: "0ac17a3da88d14445a92128393d13c39e9a5b3ec",
+        artifact: responseArtifact,
+      },
+    ];
+    codeChecksMock.getValue.mockReturnValueOnce(responseArtifact);
+    codeChecksMock.getValue.mockReturnValueOnce(responseHistoryArtifact);
     mockFS({
       [join(__dirname, "../build")]: {
         "main.12315123.js": "APP JS",
@@ -105,6 +112,9 @@ describe("build-size", () => {
           path: "build/main.*.js",
         },
       ],
+    }).catch(e => {
+      mockFS.restore();
+      throw e;
     });
 
     mockFS.restore();
@@ -144,6 +154,31 @@ describe("build-size", () => {
           "path": "build/main.*.js",
         },
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`);
+    expect(generateChart).toMatchInlineSnapshot(`
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "./charts/chart1.png",
+      Array [
+        Object {
+          "x": "eeb6f",
+          "y": 6,
+        },
+        Object {
+          "x": "0ac17",
+          "y": 10,
+        },
+      ],
     ],
   ],
   "results": Array [
