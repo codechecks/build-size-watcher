@@ -21,6 +21,7 @@ export interface NormalizedBuildSizeOptions {
   files: NormalizedFileDescription[];
   name: string;
   artifactName: string;
+  historyArtifactName: string;
 }
 
 export interface FileArtifact {
@@ -30,6 +31,8 @@ export interface FileArtifact {
 }
 
 export type FullArtifact = Dictionary<FileArtifact>;
+
+export type HistoryArtifact = { hash: string; artifact: FullArtifact }[];
 
 export type ArtifactDiffType = "changed" | "new" | "deleted";
 
