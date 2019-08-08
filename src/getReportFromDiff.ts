@@ -83,10 +83,12 @@ function renderSize(size: number, fraction: number): string {
 }
 
 export function getChartData(history: HistoryArtifact): any {
-  return history.map(art => {
-    const mainKey = Object.keys(art.artifact)[0];
-    const mainMetric = art.artifact[mainKey];
+  return history
+    .map(art => {
+      const mainKey = Object.keys(art.artifact)[0];
+      const mainMetric = art.artifact[mainKey];
 
-    return { x: art.hash.substring(0, 5), y: mainMetric.overallSize };
-  });
+      return { x: art.hash.substring(0, 5), y: mainMetric.overallSize };
+    })
+    .reverse();
 }

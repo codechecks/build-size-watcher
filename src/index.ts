@@ -6,6 +6,8 @@ import { getReportFromDiff, getChartData } from "./getReportFromDiff";
 import { normalizeOptions } from "./normalization";
 import { getArtifact } from "./getArtifact";
 import { generateChart } from "./charts/generateChart";
+import { dir } from "tmp-promise";
+import { join } from "path";
 
 export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promise<void> {
   const options = normalizeOptions(_options);
@@ -35,17 +37,25 @@ export async function buildSizeWatcher(_options: BuildSizeWatcherOptions): Promi
   const baseHistoryArtifact =
     (await codechecks.getValue<HistoryArtifact>(
       options.historyArtifactName,
-      codechecks.context.pr!.base.sha,
+      codechecks.context.pr!.base.branchName,
     )) || [];
 
   const diff = getArtifactDiff(fullArtifact, baseArtifact);
 
+  const { path: chartDir } = await dir();
+  const chart1Path = join(chartDir, "/chart1.png");
   await generateChart(
-    "./charts/chart1.png",
+    chart1Path,
     getChartData(currentHistoryArtifact(baseHistoryArtifact, fullArtifact)),
   );
+  await codechecks.saveFile("chart1", chart1Path);
+  const link = codechecks.getArtifactLink("chart1");
 
   const report = getReportFromDiff(diff, options.files, options);
+  report.longDescription += `
+  ## Charts
+  ![example chart](${link})
+  `;
   await codechecks.report(report);
 }
 

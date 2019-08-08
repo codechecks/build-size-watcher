@@ -142,6 +142,7 @@ describe("build-size", () => {
   ],
 }
 `);
+    expect(codechecks.getValue).toMatchInlineSnapshot();
     expect(codechecks.saveValue).toMatchInlineSnapshot(`
 [MockFunction] {
   "calls": Array [
