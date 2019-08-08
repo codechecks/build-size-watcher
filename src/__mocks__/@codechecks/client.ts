@@ -9,6 +9,8 @@ export const codechecks: Partial<typeof CC.codechecks> = {
   saveDirectory: jest.fn(),
   isPr: jest.fn(),
   context: {
+    currentSha: "eeb6f98b8d0a93de251ea3e4a9d02e61ec850286",
+    currentBranchName: "master",
     workspaceRoot: join(__dirname, "..", ".."),
   } as any,
 };

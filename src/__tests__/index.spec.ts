@@ -2,9 +2,12 @@ import { buildSizeWatcher } from "../index";
 import * as mockFS from "mock-fs";
 import { join } from "path";
 import { codechecks } from "@codechecks/client";
+import { generateChart } from "../charts/generateChart";
 import { FullArtifact } from "../types";
 
 type Mocked<T> = { [k in keyof T]: jest.Mock<T[k]> };
+
+jest.mock("../charts/generateChart");
 
 describe("build-size", () => {
   const codeChecksMock = require("../__mocks__/@codechecks/client").codechecks as Mocked<
@@ -45,8 +48,28 @@ describe("build-size", () => {
         },
       },
     ],
+    Array [
+      "build-size-history:Build Size",
+      Array [
+        Object {
+          "artifact": Object {
+            "build/main.*.js": Object {
+              "files": 1,
+              "overallSize": 26,
+              "path": "build/main.*.js",
+            },
+          },
+          "hash": "eeb6f98b8d0a93de251ea3e4a9d02e61ec850286",
+        },
+      ],
+      "master",
+    ],
   ],
   "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
     Object {
       "isThrow": false,
       "value": undefined,
@@ -54,6 +77,7 @@ describe("build-size", () => {
   ],
 }
 `);
+    expect(generateChart).toMatchInlineSnapshot(`[MockFunction]`);
   });
 
   it("should work in PR context", async () => {

@@ -4,7 +4,6 @@ import {
   ArtifactDiffType,
   NormalizedFileDescription,
   NormalizedBuildSizeOptions,
-  FullArtifact,
   HistoryArtifact,
 } from "./types";
 import bytes = require("bytes");
