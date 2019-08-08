@@ -254,18 +254,46 @@ describe("build-size", () => {
   ],
 }
 `);
+    expect(generateChart).toMatchInlineSnapshot(`
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "./charts/chart1.png",
+      Array [
+        Object {
+          "x": "eeb6f",
+          "y": 26,
+        },
+      ],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`);
   });
 
   it("should work with custom name in PR context", async () => {
     codeChecksMock.isPr.mockReturnValue(true);
-    codeChecksMock.getValue.mockReturnValue({
+    const responseArtifact: FullArtifact = {
       "build/main.*.js": {
-        name: "app",
         files: 1,
         overallSize: 10,
         path: "build/main.*.js",
       },
-    } as FullArtifact);
+    };
+    const responseHistoryArtifact: HistoryArtifact = [
+      {
+        hash: "0ac17a3da88d14445a92128393d13c39e9a5b3ec",
+        artifact: responseArtifact,
+      },
+    ];
+    codeChecksMock.getValue.mockReturnValueOnce(responseArtifact);
+    codeChecksMock.getValue.mockReturnValueOnce(responseHistoryArtifact);
     mockFS({
       [join(__dirname, "../build")]: {
         "main.12315123.js": "APP JS",
@@ -321,6 +349,31 @@ describe("build-size", () => {
           "path": "build/main.*.js",
         },
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`);
+    expect(generateChart).toMatchInlineSnapshot(`
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "./charts/chart1.png",
+      Array [
+        Object {
+          "x": "eeb6f",
+          "y": 6,
+        },
+        Object {
+          "x": "0ac17",
+          "y": 10,
+        },
+      ],
     ],
   ],
   "results": Array [
