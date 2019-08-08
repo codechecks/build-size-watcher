@@ -62,7 +62,7 @@ describe("build-size", () => {
           "hash": "eeb6f98b8d0a93de251ea3e4a9d02e61ec850286",
         },
       ],
-      "master",
+      "kk/feature-brach-1",
     ],
   ],
   "results": Array [
