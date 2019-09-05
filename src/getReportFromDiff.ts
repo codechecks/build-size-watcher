@@ -4,6 +4,7 @@ import {
   ArtifactDiffType,
   NormalizedFileDescription,
   NormalizedBuildSizeOptions,
+  HistoryArtifact,
 } from "./types";
 import bytes = require("bytes");
 import { sortBy, groupBy } from "lodash";
@@ -79,4 +80,15 @@ function renderFraction(value: number): string {
 
 function renderSize(size: number, fraction: number): string {
   return `${renderSign(size) + bytes(size)} (${renderSign(fraction) + renderFraction(fraction)})`;
+}
+
+export function getChartData(history: HistoryArtifact): any {
+  return history
+    .map(art => {
+      const mainKey = Object.keys(art.artifact)[0];
+      const mainMetric = art.artifact[mainKey];
+
+      return { x: art.hash.substring(0, 5), y: mainMetric.overallSize };
+    })
+    .reverse();
 }

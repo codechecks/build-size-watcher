@@ -14,6 +14,7 @@ export function normalizeOptions(options: BuildSizeWatcherOptions): NormalizedBu
     files: options.files.map(normalizeFileDescription),
     name,
     artifactName: `build-size:${name}`,
+    historyArtifactName: `build-size-history:${name}`,
   };
 }
 

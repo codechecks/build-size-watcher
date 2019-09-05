@@ -8,6 +8,7 @@
     "interface-name": [true, "never-prefix"],
     "no-commented-code": true,
     "no-use-before-declare": false,
-    "restrict-plus-operands": false
+    "restrict-plus-operands": false,
+    "no-useless-cast": false
   }
 }
